@@ -1,4 +1,4 @@
-module CPU8086(
+module MyCPU8086(
   input         clock,
   input         reset,
   output [19:0] io_memAddr, // @[src/main/scala/cpu8086/CPU8086.scala 8:14]
@@ -214,7 +214,7 @@ end // initial
 `endif
 `endif // SYNTHESIS
 endmodule
-module CPU8086System(
+module MyCPU8086System(
   input         clock,
   input         reset,
   output        io_halt, // @[src/main/scala/cpu8086/CPU8086.scala 126:14]
@@ -233,7 +233,7 @@ module CPU8086System(
   wire [19:0] mem_io_addr; // @[src/main/scala/cpu8086/CPU8086.scala 133:19]
   wire [15:0] mem_io_dataOut; // @[src/main/scala/cpu8086/CPU8086.scala 133:19]
   wire  mem_io_read; // @[src/main/scala/cpu8086/CPU8086.scala 133:19]
-  CPU8086 cpu ( // @[src/main/scala/cpu8086/CPU8086.scala 132:19]
+  MyCPU8086 cpu ( // @[src/main/scala/cpu8086/CPU8086.scala 132:19]
     .clock(cpu_clock),
     .reset(cpu_reset),
     .io_memAddr(cpu_io_memAddr),

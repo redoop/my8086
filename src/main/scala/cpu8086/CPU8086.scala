@@ -4,7 +4,7 @@ import chisel3._
 import chisel3.util._
 
 // 简化的 8086 CPU 实现
-class CPU8086 extends Module {
+class MyCPU8086 extends Module {
   val io = IO(new Bundle {
     val memAddr = Output(UInt(20.W))  // 20位地址总线
     val memDataOut = Output(UInt(16.W))
@@ -122,14 +122,14 @@ class Memory extends Module {
 }
 
 // 顶层模块：CPU + Memory
-class CPU8086System extends Module {
+class MyCPU8086System extends Module {
   val io = IO(new Bundle {
     val halt = Output(Bool())
     val ax = Output(UInt(16.W))
     val ip = Output(UInt(16.W))
   })
   
-  val cpu = Module(new CPU8086)
+  val cpu = Module(new MyCPU8086)
   val mem = Module(new Memory)
   
   // 连接 CPU 和内存

@@ -1,15 +1,17 @@
 package cpu8086
 
 import chisel3._
-import chisel3.stage.ChiselStage
 
-object Main extends App {
-  println("=== 生成 8086 CPU Verilog 代码 ===")
-  
-  (new ChiselStage).emitVerilog(
-    new CPU8086System,
-    Array("--target-dir", "generated")
-  )
-  
-  println("Verilog 代码已生成到 generated/ 目录")
+object Main {
+  def main(args: Array[String]): Unit = {
+    println("=== 生成 MyCPU8086 Verilog 代码 ===")
+    
+    // 生成 Verilog
+    (new chisel3.stage.ChiselStage).emitVerilog(
+      new MyCPU8086System,
+      Array("--target-dir", "generated")
+    )
+    
+    println("✓ Verilog 代码已生成到 generated/MyCPU8086System.v")
+  }
 }

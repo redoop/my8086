@@ -4,9 +4,9 @@ import chisel3._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
 
-class CPU8086Test extends AnyFlatSpec with ChiselScalatestTester {
-  "CPU8086System" should "execute basic instructions" in {
-    test(new CPU8086System) { dut =>
+class MyCPU8086Test extends AnyFlatSpec with ChiselScalatestTester {
+  "MyCPU8086System" should "execute basic instructions" in {
+    test(new MyCPU8086System) { dut =>
       println("=== 8086 CPU 模拟测试 ===")
       println("初始状态:")
       println(f"  AX = 0x${dut.io.ax.peek().litValue}%04x")
