@@ -37,9 +37,13 @@ sbt "runMain cpu8086.Main"
 
 ## 实现的指令
 
-- MOV AX, immediate
-- ADD AX, BX
-- HLT
+MyCPU8086 当前实现了 **3 条指令**（占 8086 全部 104 条指令的 2.9%）：
+
+- ⚠️ `MOV AX, immediate` (0xB8): 将立即数加载到 AX（部分实现）
+- ⚠️ `ADD AX, BX` (0x01): AX = AX + BX（部分实现）
+- ✅ `HLT` (0xF4): 停止 CPU（完全实现）
+
+📋 **完整指令集清单**: [docs/INSTRUCTION_SET_CHECKLIST.md](docs/INSTRUCTION_SET_CHECKLIST.md)
 
 ## 寄存器
 
