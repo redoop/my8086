@@ -4,21 +4,17 @@ import chisel3._
 import chisel3.util._
 
 /**
- * MyCPU8086 - 统一的 8086 CPU 实现
+ * MyCPU8086 Milestone 2: 基础功能完整
  * 
- * 版本: v0.3.0 (Milestone 2 - 基础功能完整)
- * 
- * 功能特性:
- * - 45 条指令 (14.4% of Intel 8086)
- * - 完整寄存器组: AX, BX, CX, DX, SP, BP, SI, DI
- * - 完整标志位: CF, ZF, SF, OF, PF
+ * 新增功能:
  * - 条件跳转指令 (JE, JNE, JG, JL, JGE, JLE)
  * - 栈操作 (PUSH, POP)
  * - 子程序调用 (CALL, RET)
  * - 逻辑运算 (AND, OR, XOR, NOT, TEST)
- * - 算术运算 (ADD, SUB, INC, DEC, CMP)
+ * - 更多 MOV 变体
+ * - 完整的算术运算
  */
-class MyCPU8086 extends Module {
+class MyCPU8086_M2 extends Module {
   val io = IO(new Bundle {
     val memAddr = Output(UInt(20.W))
     val memDataOut = Output(UInt(16.W))
@@ -486,8 +482,8 @@ class MyCPU8086 extends Module {
   }
 }
 
-// 顶层模块：CPU + Memory
-class MyCPU8086System extends Module {
+// 顶层模块：CPU + Memory (M2 版本)
+class MyCPU8086System_M2 extends Module {
   val io = IO(new Bundle {
     val halt = Output(Bool())
     val ax = Output(UInt(16.W))
@@ -499,7 +495,7 @@ class MyCPU8086System extends Module {
     val flags = Output(UInt(16.W))
   })
   
-  val cpu = Module(new MyCPU8086)
+  val cpu = Module(new MyCPU8086_M2)
   val mem = Module(new Memory)
   
   // 连接 CPU 和内存

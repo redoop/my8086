@@ -10,8 +10,8 @@ import org.scalatest.flatspec.AnyFlatSpec
  */
 class MVP_Test extends AnyFlatSpec with ChiselScalatestTester {
   
-  "MyCPU8086_MVP" should "execute MOV reg, reg instructions" in {
-    test(new MyCPU8086System_MVP) { dut =>
+  "MyCPU8086" should "execute MOV reg, reg instructions" in {
+    test(new MyCPU8086System) { dut =>
       println("\n" + "="*70)
       println("测试 1: MOV 寄存器间传送")
       println("="*70)
@@ -37,8 +37,8 @@ class MVP_Test extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
   
-  "MyCPU8086_MVP" should "execute INC and DEC instructions" in {
-    test(new MyCPU8086System_MVP) { dut =>
+  "MyCPU8086" should "execute INC and DEC instructions" in {
+    test(new MyCPU8086System) { dut =>
       println("\n" + "="*70)
       println("测试 2: INC/DEC 指令")
       println("="*70)
@@ -66,8 +66,8 @@ class MVP_Test extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
   
-  "MyCPU8086_MVP" should "execute ADD and SUB instructions" in {
-    test(new MyCPU8086System_MVP) { dut =>
+  "MyCPU8086" should "execute ADD and SUB instructions" in {
+    test(new MyCPU8086System) { dut =>
       println("\n" + "="*70)
       println("测试 3: ADD/SUB 指令")
       println("="*70)
@@ -103,8 +103,8 @@ class MVP_Test extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
   
-  "MyCPU8086_MVP" should "execute CMP instruction" in {
-    test(new MyCPU8086System_MVP) { dut =>
+  "MyCPU8086" should "execute CMP instruction" in {
+    test(new MyCPU8086System) { dut =>
       println("\n" + "="*70)
       println("测试 4: CMP 比较指令")
       println("="*70)
@@ -134,8 +134,8 @@ class MVP_Test extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
   
-  "MyCPU8086_MVP" should "execute JMP instruction" in {
-    test(new MyCPU8086System_MVP) { dut =>
+  "MyCPU8086" should "execute JMP instruction" in {
+    test(new MyCPU8086System) { dut =>
       println("\n" + "="*70)
       println("测试 5: JMP 跳转指令")
       println("="*70)
@@ -165,8 +165,8 @@ class MVP_Test extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
   
-  "MyCPU8086_MVP" should "demonstrate complete instruction set" in {
-    test(new MyCPU8086System_MVP) { dut =>
+  "MyCPU8086" should "demonstrate complete instruction set" in {
+    test(new MyCPU8086System) { dut =>
       println("\n" + "="*70)
       println("测试 6: Milestone 1 指令集演示")
       println("="*70)
