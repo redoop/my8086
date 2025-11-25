@@ -37,13 +37,29 @@ sbt "runMain cpu8086.Main"
 
 ## 实现的指令
 
-MyCPU8086 当前实现了 **3 条指令**（占 8086 全部 104 条指令的 2.9%）：
+### ⭐ Milestone 1 MVP (v0.2.0) - 当前版本
 
-- ⚠️ `MOV AX, immediate` (0xB8): 将立即数加载到 AX（部分实现）
-- ⚠️ `ADD AX, BX` (0x01): AX = AX + BX（部分实现）
-- ✅ `HLT` (0xF4): 停止 CPU（完全实现）
+MyCPU8086_MVP 实现了 **15 条指令**（占 8086 全部 104 条指令的 14.4%）：
 
-📋 **完整指令集清单**: [docs/INSTRUCTION_SET_CHECKLIST.md](docs/INSTRUCTION_SET_CHECKLIST.md)
+**数据传送** (5条):
+- ✅ `MOV AX/BX/CX/DX, imm` (0xB8-0xBB): 立即数到寄存器
+- ✅ `MOV reg, reg` (0x89): 寄存器间传送
+
+**算术运算** (9条):
+- ✅ `ADD reg, reg` (0x01): 加法
+- ✅ `SUB reg, reg` (0x29): 减法
+- ✅ `INC AX/BX/CX/DX` (0x40-0x43): 寄存器加1
+- ✅ `DEC AX/BX/CX/DX` (0x48-0x4B): 寄存器减1
+- ✅ `CMP reg, reg` (0x39): 比较
+
+**控制转移** (1条):
+- ✅ `JMP rel8` (0xEB): 相对短跳转
+
+**处理器控制** (1条):
+- ✅ `HLT` (0xF4): 停止 CPU
+
+📋 **完整指令集清单**: [docs/INSTRUCTION_SET_CHECKLIST.md](docs/INSTRUCTION_SET_CHECKLIST.md)  
+🎯 **Milestone 1 报告**: [docs/MILESTONE1_MVP.md](docs/MILESTONE1_MVP.md)
 
 ## 寄存器
 
@@ -81,6 +97,12 @@ MyCPU8086 当前实现了 **3 条指令**（占 8086 全部 104 条指令的 2.9
   - 核心逻辑 2,354 个晶体管
   - 与真实 Intel 8086 的对比
 
+- **[Milestone 1 MVP 报告](docs/MILESTONE1_MVP.md)** - 最小可用系统完成报告 ⭐ 新增
+  - 从 3 条指令扩展到 15 条指令
+  - 完整的寄存器组和标志位系统
+  - 6 个新测试用例
+  - 示例程序和性能分析
+
 ### 📖 示例和工具
 
 - **[示例程序](examples/simple_program.md)** - 8086 汇编示例
@@ -104,34 +126,55 @@ MyCPU8086 当前实现了 **3 条指令**（占 8086 全部 104 条指令的 2.9
 
 ## 项目统计
 
-| 指标 | 数值 |
-|------|------|
-| 指令实现 | 3/104 (2.9%) |
-| 晶体管数 | ~100,658 (含 1KB SRAM) |
-| 核心逻辑 | ~2,354 晶体管 |
-| 测试用例 | 7 个 (100% 通过) |
-| 文档页面 | 6 个 |
-| 代码行数 | ~500 行 Scala + ~300 行 Verilog |
+| 指标 | 初始版本 | Milestone 1 MVP |
+|------|---------|----------------|
+| 指令实现 | 3/104 (2.9%) | **15/104 (14.4%)** |
+| 寄存器支持 | 1 个 (AX) | **4 个 (AX, BX, CX, DX)** |
+| 标志位 | 1 个 (ZF) | **5 个 (CF, ZF, SF, OF, PF)** |
+| 测试用例 | 7 个 | **13 个** |
+| 晶体管数 | ~100,658 (含 1KB SRAM) | ~100,658 (含 1KB SRAM) |
+| 核心逻辑 | ~2,354 晶体管 | ~3,500 晶体管 (估算) |
+| 文档页面 | 6 个 | **7 个** |
+| 代码行数 | ~500 行 Scala | **~850 行 Scala** |
 
 ## 开发路线图
 
-### Phase 1: 基础寄存器和数据传送 (计划中)
-- [ ] 实现 BX, CX, DX 寄存器
-- [ ] 完整的 MOV reg, reg
-- [ ] 完整的 MOV reg, imm (16位)
-- [ ] MOV reg, mem / MOV mem, reg
+### ✅ Milestone 1: 最小可用系统 (MVP) - 已完成
+**目标**: 能运行简单的计算程序  
+**指令数**: 15 条  
+**状态**: ✅ 完成 (2025-11-25)
 
-### Phase 2: 基础算术运算 (计划中)
-- [ ] 完整的 ADD/SUB 指令
-- [ ] INC/DEC 指令
-- [ ] CMP 指令
-- [ ] 完整的标志位更新
+- [x] 实现 BX, CX, DX 寄存器
+- [x] MOV reg, reg
+- [x] MOV reg, imm (8位)
+- [x] ADD/SUB reg, reg
+- [x] INC/DEC 指令
+- [x] CMP 指令
+- [x] JMP 指令
+- [x] 完整的标志位系统
 
-### Phase 3: 基础控制转移 (计划中)
-- [ ] JMP 指令
-- [ ] 条件跳转 (JE, JNE, JG, JL)
-- [ ] CALL/RET 指令
+📄 **详细报告**: [docs/MILESTONE1_MVP.md](docs/MILESTONE1_MVP.md)
+
+### 🔄 Milestone 2: 基础功能完整 (进行中)
+**目标**: 支持基本的程序控制流  
+**指令数**: ~40 条  
+**预计完成**: 2025-12
+
+- [ ] 条件跳转 (JE, JNE, JG, JL 等)
 - [ ] PUSH/POP 指令
+- [ ] CALL/RET 指令
+- [ ] 逻辑运算 (AND, OR, XOR, NOT)
+- [ ] 内存操作 (MOV reg, mem)
+
+### 📅 Milestone 3: 标准兼容 (计划中)
+**目标**: 兼容大部分 8086 程序  
+**指令数**: ~80 条  
+**预计完成**: 2026-Q1
+
+- [ ] 乘除法指令
+- [ ] 字符串操作
+- [ ] 中断支持
+- [ ] 完整的寻址模式
 
 详细路线图请参考 [指令集实现清单](docs/INSTRUCTION_SET_CHECKLIST.md)
 
