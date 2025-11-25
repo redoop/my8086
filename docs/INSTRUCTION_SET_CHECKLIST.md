@@ -317,19 +317,23 @@ is(0xF4.U) {
 
 ## 实现路线图
 
-### Milestone 1: 最小可用系统 (MVP)
+### ✅ Milestone 1: 最小可用系统 (MVP) - 已完成
 **目标**: 能运行简单的计算程序  
-**指令数**: ~15 条  
-**预计工作量**: 2-3 周
+**指令数**: 15 条  
+**完成日期**: 2025-11-25
 
-- [x] HLT
-- [x] MOV AX, imm (部分)
-- [x] ADD AX, BX (部分)
-- [ ] MOV reg, reg (4条)
-- [ ] ADD/SUB reg, reg (8条)
-- [ ] INC/DEC reg (8条)
-- [ ] JMP (1条)
-- [ ] CMP (1条)
+- [x] HLT (0xF4)
+- [x] MOV AX/BX/CX/DX, imm (0xB8-0xBB) - 4条
+- [x] MOV reg, reg (0x89) - 1条
+- [x] ADD reg, reg (0x01) - 1条
+- [x] SUB reg, reg (0x29) - 1条
+- [x] INC AX/BX/CX/DX (0x40-0x43) - 4条
+- [x] DEC AX/BX/CX/DX (0x48-0x4B) - 4条
+- [x] JMP rel8 (0xEB) - 1条
+- [x] CMP reg, reg (0x39) - 1条
+
+**总计**: 15 条指令 ✅  
+**详细报告**: [docs/MILESTONE1_MVP.md](MILESTONE1_MVP.md)
 
 ### Milestone 2: 基础功能完整
 **目标**: 支持基本的程序控制流  
